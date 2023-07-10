@@ -23,11 +23,8 @@ const Login = () => {
         },
         onSubmit: async (values) => {
             setAuthFail(false);
-            console.log(auth)
             try {
                 const { data } = await axios.post('/api/v1/login', values);
-
-                console.log(data);
                 localStorage.setItem('user', JSON.stringify(data));
                 auth.memo.setUserData(data);
                 navigate('/', { replace: true });
@@ -61,7 +58,6 @@ const Login = () => {
                                     type='text'
                                     onChange={formik.handleChange}
                                     value={formik.values.username}
-                                    onBlur={formik.handleBlur}
                                     disabled={formik.isSubmitting}
                                     isInvalid={authFail}
                                     placeholder='username'
@@ -78,7 +74,6 @@ const Login = () => {
                                     type='password'
                                     onChange={formik.handleChange}
                                     value={formik.values.password}
-                                    onBlur={formik.handleBlur}
                                     disabled={formik.isSubmitting}
                                     isInvalid={authFail}
                                     placeholder='password'

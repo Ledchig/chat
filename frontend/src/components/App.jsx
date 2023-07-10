@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import NotFound from './components/NotFound.jsx';
-import Login from './components/Login.jsx';
-import Header from './components/Header.jsx';
-import AuthProvider from './context/AuthProvider.jsx';
-import Chat from './components/Chat.jsx';
-import PrivateRoute from './components/PrivateRoute.jsx';
+import NotFound from './NotFound.jsx';
+import Login from './Login.jsx';
+import Header from './Header.jsx';
+import AuthProvider from '../context/AuthProvider.jsx';
+import Chat from './ChatPage.jsx';
+import PrivateRoute from './PrivateRoute.jsx';
 
 const App = () => (
     <AuthProvider>
