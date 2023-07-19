@@ -1,10 +1,9 @@
 import { Navbar, Container, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuthContext } from '../context/useAuthContext.js';
+import { useAuthContext } from '../context/index.js';
 
 const Header = () => {
-    const { logOut } = useAuthContext();
-    const user = localStorage.getItem('user');
+    const { logOut, user } = useAuthContext();
     const navigate = useNavigate();
     const handlerClick = () => {
         logOut();

@@ -3,7 +3,15 @@ import { Button, Col } from "react-bootstrap";
 
 const Channels = () => {
     const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
-    console.log(channels);
+
+    const handleClickNewChannel = () => {
+
+    };
+
+    const handleClickOnChannel = () => {
+
+    };
+
     return (
         <Col className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
             <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
@@ -12,6 +20,7 @@ const Channels = () => {
                     type="button"
                     variant="vertical"
                     className="p-0 text-primary"
+                    onClick={handleClickNewChannel}
                 >
                     <span>+</span>
                 </Button>
@@ -23,6 +32,7 @@ const Channels = () => {
                             className="w-100 rounded-0 text-start text-truncate"
                             variant={currentChannelId === id ? 'secondary' : null}
                             key={id}
+                            onClick={handleClickOnChannel}
                         >
                             <span className="me-1">#</span>
                             {name}

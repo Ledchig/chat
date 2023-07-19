@@ -6,7 +6,7 @@ const channelsSlice = createSlice({
     name: 'channelsInfo',
     initialState: {
         channels: [],
-        currentChannelId: null,
+        currentChannelId: 1,
     },
     reducers: {
         loadChannels(state, { payload: { channels, currentChannelId }}) {
@@ -28,10 +28,6 @@ const channelsSlice = createSlice({
                 state.currentChannelId = defaultChannelId;
               };
             },        
-        },
-        getCurrentChannel(state) {
-            const { channels, currentChannelId } = state.channels;
-            return channels.find((channel) => channel.id === state.currentChannelId);
         },
 });
 

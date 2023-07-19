@@ -6,12 +6,12 @@ import imagePath from '../assets/login.jpeg';
 import { useRef, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useAuthContext } from '../context/useAuthContext.js';
+import { useAuthContext } from '../context/index.js';
 
 const Login = () => {
     const [authFail, setAuthFail] = useState(false);
     const navigate = useNavigate();
-    const auth = useAuthContext();
+    const { logIn } = useAuthContext();
     const inputRef = useRef();
     useEffect(() => {
         inputRef.current.focus();
@@ -26,7 +26,7 @@ const Login = () => {
             try {
                 const { data } = await axios.post('/api/v1/login', values);
                 localStorage.setItem('user', JSON.stringify(data));
-                auth.memo.setUserData(data);
+                logIn(data);
                 navigate('/', { replace: true });
             } catch (error) {
                 formik.setSubmitting(false);

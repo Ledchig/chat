@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useDispatch } from 'react-redux';
 import { loadChannels } from '../slices/channelsSlice.js';
-import { useAuthContext } from '../context/useAuthContext.js';
+import { useAuthContext } from '../context/index.js';
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
