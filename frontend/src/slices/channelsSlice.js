@@ -13,9 +13,8 @@ const channelsSlice = createSlice({
             state.channels = channels;
             state.currentChannelId = currentChannelId;
         },
-        addChannel(state, { payload: { channel } }){
-            state.newChannelId = channel.id;
-            state.channels.push(channel);
+        addChannel(state, { payload }) {
+            state.channels.push(payload);
         },
         setCurrentChannel(state, { payload: { id } }) {
             state.currentChannelId = id;
@@ -28,8 +27,12 @@ const channelsSlice = createSlice({
                 state.currentChannelId = defaultChannelId;
               };
             },        
+        renameChannel(state, { payload: { name, id } }) {
+            const channel = state.channels.find((channel) => channel.id === id);
+            channel.name = name;
         },
+    },
 });
 
-export const { loadChannels, addChannel, setCurrentChannel, removeChannel, getCurrentChannel } = channelsSlice.actions;
+export const { loadChannels, addChannel, setCurrentChannel, removeChannel, renameChannel } = channelsSlice.actions;
 export default channelsSlice.reducer;

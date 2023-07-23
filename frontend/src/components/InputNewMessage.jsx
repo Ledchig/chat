@@ -16,7 +16,7 @@ const InputNewMessage = () => {
             body: '',
         },
         validationSchema: Yup.object({
-            body: Yup.string().required('Required'),
+            body: Yup.string().trim().required('Required'),
         }),
         onSubmit: async (values) => {
             const message = { body: values.body, user: username, channelId };
