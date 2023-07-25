@@ -4,8 +4,10 @@ import * as Yup from 'yup';
 import { useAuthContext, useSocketContext } from "../context/index.js";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const InputNewMessage = () => {
+    const { t } = useTranslation();
     const { sendMessage } = useSocketContext();
     const channelId = useSelector((state) => state.channelsInfo.currentChannelId);
     const { user: username } = useAuthContext();
@@ -19,7 +21,7 @@ const InputNewMessage = () => {
             body: Yup.string().trim().required('Required'),
         }),
         onSubmit: async (values) => {
-            const message = { body: values.body, user: username, channelId };
+            const message = { body: values.body, username, channelId };
             try {
             await sendMessage(message);
             formik.resetForm();
@@ -51,7 +53,7 @@ const InputNewMessage = () => {
                     variant="vertical"
                     disabled={!formik.isValid}
                 >
-                    Отправить
+                    {t('chat.send')}
                 </Button>
             </InputGroup>
         </Form>

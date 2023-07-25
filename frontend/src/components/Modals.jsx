@@ -7,8 +7,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal } from "../slices/modalSliice";
 import { useSocketContext } from "../context";
 import { useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
 
 const NewChannelModal = () => {
+  const { t } = useTranslation();
   const { addChannel } = useSocketContext();
   const { isOpened } = useSelector((state) => state.modal);
   const { channels } = useSelector((state) => state.channelsInfo);
@@ -17,25 +19,25 @@ const NewChannelModal = () => {
 
   const formik = useFormik({
     initialValues: {
-      channelName: "",
+      name: "",
     },
     validationSchema: Yup.object({
-      channelName: Yup
+      name: Yup
       .string()
       .trim()
-      .required("Обязательное поле")
-      .min(3, 'От 3 до 20 символов')
-      .max(20, 'От 3 до 20 символов')
-      .notOneOf(channelsNames, 'Должно быть уникальным'),
+      .required('modals.required')
+      .min(3, 'modals.min')
+      .max(20, 'modals.max')
+      .notOneOf(channelsNames, 'modals.uniq'),
     }),
     onSubmit: async (values) => {
-      const channel = { name: values.channelName };
+      const channel = { name: values.name };
       try {
       await addChannel(channel);
       formik.resetForm();
       handleClose();
       } catch(error) {
-          throw error;
+        throw error;
       }
     },
   });
@@ -47,32 +49,34 @@ const NewChannelModal = () => {
   return (
       <Modal show={isOpened} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Добавить канал</Modal.Title>
+          <Modal.Title>{t('modals.add')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group>
               <Form.Control
-                name='channelName'
+                name='name'
                 id='name'
                 className="mb-2"
                 disabled={formik.isSubmitting}
-                onBlur={formik.handleBlur}
-                value={formik.values.channelName}
+                value={formik.values.name}
                 onChange={formik.handleChange}
                 autoFocus
+                isInvalid={(formik.errors.name)}
               />
-              <label htmlFor="channelName"></label>
-              <Form.Control.Feedback></Form.Control.Feedback>
+              <label htmlFor="name"></label>
+              <Form.Control.Feedback type="invalid">
+              {t(formik.errors.name)}
+              </Form.Control.Feedback>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Отменить
+            {t('modals.cancel')}
           </Button>
           <Button variant="primary" onClick={formik.handleSubmit}>
-            Отправить
+            {t('modals.submit')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -80,6 +84,7 @@ const NewChannelModal = () => {
 };
 
 const RemoveChannelModal = () => {
+  const { t } = useTranslation();
   const { removeChannel } = useSocketContext();
   const { isOpened } = useSelector((state) => state.modal);
   const dispatch = useDispatch();
@@ -102,17 +107,17 @@ const RemoveChannelModal = () => {
     <>
       <Modal show={isOpened} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Удалить канал</Modal.Title>
+          <Modal.Title>{t('modals.remove')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Уверены?</p>
+          <p>{t('modals.confirmation')}</p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Отменить
+            {t('modals.cancel')}
           </Button>
           <Button variant="danger" onClick={handleRemove}>
-            Удалить
+            {t('modals.confirm')}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -128,22 +133,23 @@ const RenameChannelModal = () => {
   const channelsNames = channels.map((channel) => channel.name);
   const dispatch = useDispatch();
   const inputRef = useRef();
+  const { t } = useTranslation();
 
   const formik = useFormik({
     initialValues: {
-      channelName: "",
+      name: "",
     },
     validationSchema: Yup.object({
-      channelName: Yup
+      name: Yup
       .string()
       .trim()
-      .required("Обязательное поле")
-      .min(3, 'От 3 до 20 символов')
-      .max(20, 'От 3 до 20 символов')
-      .notOneOf(channelsNames, 'Должно быть уникальным'),
+      .required("modals.required")
+      .min(3, 'modals.min')
+      .max(20, 'modals.max')
+      .notOneOf(channelsNames, 'modals.uniq'),
     }),
     onSubmit: async (values) => {
-      const channel = { name: values.channelName, id };
+      const channel = { name: values.name, id };
       try {
       await renameChannel(channel);
       formik.resetForm();
@@ -165,32 +171,34 @@ const RenameChannelModal = () => {
   return (
       <Modal show={isOpened} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Переименовать канал</Modal.Title>
+          <Modal.Title>{t('modals.rename')}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
             <Form.Group>
               <Form.Control
-                name='channelName'
+                name='name'
                 id='name'
                 className="mb-2"
                 disabled={formik.isSubmitting}
-                onBlur={formik.handleBlur}
-                value={formik.values.channelName}
+                value={formik.values.name}
                 onChange={formik.handleChange}
                 ref={inputRef}
+                isInvalid={formik.errors.name}
               />
-              <label htmlFor="channelName"></label>
-              <Form.Control.Feedback></Form.Control.Feedback>
+              <label htmlFor="name"></label>
+              <Form.Control.Feedback type="invalid">
+                {t(formik.errors.name)}
+              </Form.Control.Feedback>
             </Form.Group>
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Отменить
+            {t('modals.cancel')}
           </Button>
           <Button variant="primary" onClick={formik.handleSubmit}>
-            Отправить
+            {t('modals.submit')}
           </Button>
         </Modal.Footer>
       </Modal>

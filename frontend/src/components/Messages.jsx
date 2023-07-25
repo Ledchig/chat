@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux";
 import { Col } from "react-bootstrap";
 import InputNewMessage from "./InputNewMessage.jsx";
+import { useTranslation } from "react-i18next";
 
 const Messages = () => {
+    const { t } = useTranslation();
     const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
     const { messages } = useSelector((state) => state.messagesInfo);
     const messagesForCurrentChannel = messages.filter(({channelId}) => channelId === currentChannelId);
     const currentChannel = channels.find(({ id }) => id === currentChannelId);
+
     return (
         <Col className="p-0 h-100">
                 <div className="d-flex flex-column h-100">
@@ -14,12 +17,12 @@ const Messages = () => {
                     <p className="m-0">
                         <b>{`# ${currentChannel.name}`}</b>
                     </p>
-                    <span className="text-mutted">{messagesForCurrentChannel.length} сообщений</span>
+                    <span className="text-mutted">{`${messagesForCurrentChannel.length} ${t('chat.messageCount', { count: messagesForCurrentChannel.length})}`}</span>
                 </div>
                 <div id="messages-box" className="chat-messages overflow-auto px-5">
-                    {messagesForCurrentChannel.map(({ body, user, id }) => (
+                    {messagesForCurrentChannel.map(({ body, username, id }) => (
                         <div key={id} className="text-break mb-2">
-                            <b>{user}</b>
+                            <b>{username}</b>
                             :
                             {` ${body}`}
                         </div>

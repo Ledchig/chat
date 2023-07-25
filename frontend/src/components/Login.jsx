@@ -7,8 +7,10 @@ import { useRef, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuthContext } from '../context/index.js';
+import { useTranslation } from 'react-i18next';
 
 const Login = () => {
+    const { t } = useTranslation();
     const [authFail, setAuthFail] = useState(false);
     const navigate = useNavigate();
     const { logIn } = useAuthContext();
@@ -45,14 +47,14 @@ const Login = () => {
                 <Card className='shadow-sm'>
                     <Card.Body className='row p-5'>
                         <Col className='col-12 col-md-6 d-flex align-items-center justify-content-center'>
-                            <Card.Img className='rounded-circle' alt='Войти' src={imagePath} />
+                            <Card.Img className='rounded-circle' alt={t('login.header')} src={imagePath} />
                         </Col>
                         <Form onSubmit={formik.handleSubmit} className='col-12 col-md-6 mt-3 mt-mb-0'>
                             <h1 className='text-center mb-4'>
-                                Войти
+                                {t('login.header')}
                             </h1>
                             <Form.Group className='form-floating mb-3'>
-                                <FloatingLabel label='Ваш ник'>
+                                <FloatingLabel label={t('login.username')}>
                                 <Form.Control
                                     type='text'
                                     onChange={formik.handleChange}
@@ -68,7 +70,7 @@ const Login = () => {
                                 </FloatingLabel>
                             </Form.Group>
                             <Form.Group className='form-floating mb-3'>
-                                <FloatingLabel label='Ваш пароль'>
+                                <FloatingLabel label={t('login.password')}>
                                 <Form.Control
                                     type='password'
                                     onChange={formik.handleChange}
@@ -80,7 +82,7 @@ const Login = () => {
                                     autoComplete='current-password'
                                     required
                                 />
-                                <Form.Control.Feedback type='invalid'>Неверное имя пользователя или пароль</Form.Control.Feedback>
+                                <Form.Control.Feedback type='invalid'>{t('login.authFailed')}</Form.Control.Feedback>
                                 </FloatingLabel>
                             </Form.Group>
                             <Button type='submit' disabled={formik.isSubmitting} className='w-100 mb-3' variant='outline-primary'>Войти</Button>
@@ -88,8 +90,8 @@ const Login = () => {
                     </Card.Body>
                     <Card.Footer className='p-4'>
                         <div className='text-center'>
-                            <span>Нет аккаунта?</span>
-                            <Link to='/signup'> Регистрация</Link>
+                            <span>{t('login.newToChat')}</span>
+                            <Link to='/signup'> {t('login.signup')}</Link>
                         </div>
                     </Card.Footer>
                 </Card>
