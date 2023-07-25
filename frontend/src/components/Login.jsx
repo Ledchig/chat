@@ -25,12 +25,11 @@ const Login = () => {
             setAuthFail(false);
             try {
                 const { data } = await axios.post('/api/v1/login', values);
-                localStorage.setItem('user', JSON.stringify(data));
                 logIn(data);
                 navigate('/', { replace: true });
             } catch (error) {
                 formik.setSubmitting(false);
-                if (error.isAxiosError && error.response.status === 401) {
+                if (error.response.status === 401) {
                     setAuthFail(true);
                     inputRef.current.select();
                     return;

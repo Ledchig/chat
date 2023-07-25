@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { Container, Row } from "react-bootstrap";
 import Channels from './Channels.jsx';
 import Messages from './Messages.jsx';
-import ModalComponent from "./modals.jsx";
+import ModalComponent from "./Modals.jsx";
 
 const Chat = () => {
     const auth = useAuthContext();

@@ -7,7 +7,7 @@ const Header = () => {
     const navigate = useNavigate();
     const handlerClick = () => {
         logOut();
-        navigate('/login');
+        navigate('/');
     };
     
     return (

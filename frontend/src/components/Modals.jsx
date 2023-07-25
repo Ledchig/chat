@@ -144,7 +144,6 @@ const RenameChannelModal = () => {
     }),
     onSubmit: async (values) => {
       const channel = { name: values.channelName, id };
-      console.log(channel);
       try {
       await renameChannel(channel);
       formik.resetForm();
