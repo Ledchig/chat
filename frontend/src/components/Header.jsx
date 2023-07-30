@@ -18,7 +18,7 @@ const Header = () => {
                 <Navbar.Brand as={Link} to='/'>
                 {t('hexletChat')}
                 </Navbar.Brand>
-                {user ? <Button type='button' className='btn btn-primary' onClick={handlerClick}>Выйти</Button> : null }
+                {user ? <Button type='button' className='btn btn-primary' onClick={handlerClick}>{t('logout')}</Button> : null}
             </Container>
         </Navbar>
     );

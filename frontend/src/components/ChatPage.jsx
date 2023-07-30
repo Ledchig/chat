@@ -8,8 +8,11 @@ import { Container, Row } from "react-bootstrap";
 import Channels from './Channels.jsx';
 import Messages from './Messages.jsx';
 import ModalComponent from "./Modals.jsx";
+import { toast } from "react-toastify";
+import { useTranslation } from "react-i18next";
 
 const Chat = () => {
+    const { t } = useTranslation();
     const auth = useAuthContext();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -17,6 +20,7 @@ const Chat = () => {
     useEffect(() => {
         const fetchChat = async (token) => {
         try {
+            
             const { data } = await axios.get('/api/v1/data', {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -25,17 +29,22 @@ const Chat = () => {
             dispatch(loadChannels(data));
             setFetched(true);
         } catch(error) {
+            console.log(error);
+            if (!error.isAxiosError) {
+                toast.error(t('errors.unknown'));
+                return;
+            }
             if (error.response.status === 401) {
                 navigate('/login');
             } else {
-                throw error;
+                toast.error(t('errors.network'));
             }
         }
     };
     const { token } = JSON.parse(localStorage.getItem('user'));
     fetchChat(token);
     },
-    [auth, dispatch, navigate],
+    [auth, dispatch, navigate, t],
     );
     
 

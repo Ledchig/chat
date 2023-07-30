@@ -8,6 +8,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const { t } = useTranslation();
@@ -46,13 +47,16 @@ const SignUp = () => {
         logIn(data);
         navigate("/", { replace: true });
       } catch (error) {
-        console.log(error);
+        if (!error.isAxiosError) {
+          toast.error(t('errors.unknown'));
+          return;
+      } 
         if (error.response.status === 409) {
           setSignUpFail(true);
           inputRef.current.select();
-          return;
+        } else {
+          toast.error(t('errors.network'));
         }
-        console.error(error);
       }
     },
   });

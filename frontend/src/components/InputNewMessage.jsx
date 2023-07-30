@@ -5,6 +5,7 @@ import { useAuthContext, useSocketContext } from "../context/index.js";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { toast } from "react-toastify";
 
 const InputNewMessage = () => {
     const { t } = useTranslation();
@@ -26,7 +27,13 @@ const InputNewMessage = () => {
             await sendMessage(message);
             formik.resetForm();
             } catch(error) {
-                throw error;
+                if (!error.isAxiosError) {
+                    toast.error(t('errors.unknown'));
+                    return;
+                } 
+                else {
+                    toast.error(t('errors.network'));
+                }
             }
         },
     });

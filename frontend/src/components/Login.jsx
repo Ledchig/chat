@@ -8,6 +8,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useAuthContext } from '../context/index.js';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { t } = useTranslation();
@@ -31,12 +32,17 @@ const Login = () => {
                 navigate('/', { replace: true });
             } catch (error) {
                 formik.setSubmitting(false);
+                if (!error.isAxiosError) {
+                    toast.error(t('errors.unknown'));
+                    return;
+                } 
                 if (error.response.status === 401) {
                     setAuthFail(true);
                     inputRef.current.select();
                     return;
+                } else {
+                    toast.error(t('errors.network'));
                 }
-                throw error;
             }
         },
     });
