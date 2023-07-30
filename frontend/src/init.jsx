@@ -6,8 +6,12 @@ import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./slices/index.js";
 import i18n from "i18next";
+import leoProfanity from 'leo-profanity';
 
 const init = () => {
+  const censorshipDictionaryRu = leoProfanity.getDictionary('ru');
+  leoProfanity.add(censorshipDictionaryRu);
+
   i18n
     .use(initReactI18next)
     .init({

@@ -49,6 +49,7 @@ const ru = {
         passMin: 'Не менее 6 символов',
         mustMatch: 'Пароли должны совпадать',
         username: 'Имя пользователя',
+        badName: 'Недопустимое имя пользователя',
         usernameConstraints: 'От 3 до 20 символов',
         password: 'Пароль',
         confirm: 'Подтвердите пароль',

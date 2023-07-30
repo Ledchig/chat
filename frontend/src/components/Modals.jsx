@@ -9,6 +9,7 @@ import { useSocketContext } from "../context";
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import leoProfanity from 'leo-profanity';
 
 const NewChannelModal = () => {
   const { t } = useTranslation();
@@ -31,8 +32,9 @@ const NewChannelModal = () => {
       .max(20, 'modals.max')
       .notOneOf(channelsNames, 'modals.uniq'),
     }),
-    onSubmit: async (values) => {
-      const channel = { name: values.name };
+    onSubmit: async ({ name }) => {
+      const cleanedName = leoProfanity.clean(name);
+      const channel = { name: cleanedName };
       try {
       await addChannel(channel);
       toast.success(t('channels.created'));
@@ -161,8 +163,9 @@ const RenameChannelModal = () => {
       .max(20, 'modals.max')
       .notOneOf(channelsNames, 'modals.uniq'),
     }),
-    onSubmit: async (values) => {
-      const channel = { name: values.name, id };
+    onSubmit: async ({ name }) => {
+      const cleanedName = leoProfanity.clean(name);
+      const channel = { name: cleanedName, id };
       try {
       await renameChannel(channel);
       formik.resetForm();

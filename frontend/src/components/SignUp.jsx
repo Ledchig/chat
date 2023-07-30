@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { toast } from "react-toastify";
+import leoProfanity from 'leo-profanity';
 
 const SignUp = () => {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [signUpFail, setSignUpFail] = useState(false);
   const inputRef = useRef();
+  const badWords = leoProfanity.list();
 
   const formik = useFormik({
     initialValues: {
@@ -28,7 +30,8 @@ const SignUp = () => {
         .trim()
         .required("signup.required")
         .min(3, "signup.usernameConstraints")
-        .max(20, "signup.usernameConstraints"),
+        .max(20, "signup.usernameConstraints")
+        .notOneOf(badWords, "signup.badName"),
       password: Yup.string()
         .trim()
         .required("signup.required")
@@ -38,11 +41,11 @@ const SignUp = () => {
         .required("signup.required")
         .oneOf([Yup.ref("password"), null], "signup.mustMatch"),
     }),
-    onSubmit: async (values) => {
+    onSubmit: async ({ username, password}) => {
       try {
         const { data } = await axios.post("/api/v1/signup", {
-          username: values.username,
-          password: values.password,
+          username,
+          password,
         });
         logIn(data);
         navigate("/", { replace: true });
