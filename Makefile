@@ -1,11 +1,11 @@
 lint-frontend:
-	make -C frontend lint
+	npx eslint frontend/src/
 
 install:
 	npm ci
 
 start-frontend:
-	make -C frontend start
+	npm start --prefix frontend
 
 start-backend:
 	npx start-server
