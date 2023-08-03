@@ -60,7 +60,7 @@ const Login = () => {
                                 {t('login.header')}
                             </h1>
                             <Form.Group className='form-floating mb-3'>
-                                <FloatingLabel label={t('login.username')}>
+                                <FloatingLabel controlId='username' label={t('login.username')}>
                                 <Form.Control
                                     type='text'
                                     onChange={formik.handleChange}
@@ -76,7 +76,7 @@ const Login = () => {
                                 </FloatingLabel>
                             </Form.Group>
                             <Form.Group className='form-floating mb-3'>
-                                <FloatingLabel label={t('login.password')}>
+                                <FloatingLabel controlId='password' label={t('login.password')}>
                                 <Form.Control
                                     type='password'
                                     onChange={formik.handleChange}
