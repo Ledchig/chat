@@ -12,7 +12,7 @@ const InputNewMessage = () => {
     const { t } = useTranslation();
     const { sendMessage } = useSocketContext();
     const channelId = useSelector((state) => state.channelsInfo.currentChannelId);
-    const { user: username } = useAuthContext();
+    const { user: { username } } = useAuthContext();
     const inputMessageRef = useRef();
 
     const formik = useFormik({

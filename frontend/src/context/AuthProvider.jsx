@@ -6,9 +6,9 @@ const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(userData ? userData.username : null); 
 
     const logIn = (userData) => {
-        console.log(userData);
+        const username = userData.username;
         localStorage.setItem('user', JSON.stringify(userData));
-        setUser({ username: userData.username });
+        setUser({ username });
       };
 
     const logOut = () => {
