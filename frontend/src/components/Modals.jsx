@@ -73,7 +73,7 @@ const NewChannelModal = () => {
                 autoFocus
                 isInvalid={(formik.errors.name && formik.touched.name)}
               />
-              <label htmlFor="name"></label>
+              <label className="visually-hidden" htmlFor="name">{t('modals.channelName')}</label>
               <Form.Control.Feedback type="invalid">
               {t(formik.errors.name)}
               </Form.Control.Feedback>
@@ -208,7 +208,7 @@ const RenameChannelModal = () => {
                 ref={inputRef}
                 isInvalid={formik.errors.name && formik.touched.name}
               />
-              <label htmlFor="name"></label>
+              <label className="visually-hidden" htmlFor="name">{t('modals.editChannelName')}</label>
               <Form.Control.Feedback type="invalid">
                 {t(formik.errors.name)}
               </Form.Control.Feedback>
