@@ -88,7 +88,7 @@ const Login = () => {
                                     autoComplete='current-password'
                                     required
                                 />
-                                <Form.Control.Feedback type='invalid'>{authFail && t('login.authFailed')}</Form.Control.Feedback>
+                                {authFail && <Form.Control.Feedback type='invalid'>{t('login.authFailed')}</Form.Control.Feedback>}
                                 </FloatingLabel>
                             </Form.Group>
                             <Button type='submit' disabled={formik.isSubmitting} className='w-100 mb-3' variant='outline-primary'>Войти</Button>
