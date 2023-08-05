@@ -8,7 +8,7 @@ import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
-import { useSocketContext } from '../context';
+import { useSocketContext } from '../hooks/index';
 import { closeModal } from '../slices/modalSliice';
 
 function NewChannelModal() {

@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Container, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { useAuthContext } from '../context/index';
+import { useAuthContext } from '../hooks/index';
 
 function Header() {
   const { t } = useTranslation();

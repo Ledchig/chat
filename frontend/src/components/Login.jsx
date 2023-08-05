@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
-import { useAuthContext } from '../context/index';
+import { useAuthContext } from '../hooks/index';
 import imagePath from '../assets/login.jpeg';
 
 function Login() {

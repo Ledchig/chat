@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
-import { useAuthContext } from '../context';
+import { useAuthContext } from '../hooks/index';
 import signUpImg from '../assets/signUp.jpg';
 
 function SignUp() {

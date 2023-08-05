@@ -3,11 +3,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import NotFound from './components/NotFound';
 import Header from './components/Header';
-import AuthProvider from './context/AuthProvider';
 import PrivateRoute from './components/PrivateRoute';
 import SignUp from './components/SignUp';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from './components/Login';
+import AuthProvider from './context/AuthProvider';
 
 function App() {
   return (

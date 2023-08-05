@@ -1,6 +1,6 @@
 import React from 'react';
 import Chat from './ChatPage';
-import { useAuthContext } from '../context/index';
+import { useAuthContext } from '../hooks/index';
 import Login from './Login';
 
 function PrivateRoute() {

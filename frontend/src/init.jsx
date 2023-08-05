@@ -5,12 +5,12 @@ import i18n from 'i18next';
 import leoProfanity from 'leo-profanity';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import resources from './locales/index';
-import { SocketContext, useSocketContext } from './context/index';
+import { SocketContext } from './context/index';
+import sockets from './sockets';
 import App from './App';
 import store from './slices/index';
 
 const init = () => {
-  const api = useSocketContext();
   const censorshipDictionaryRu = leoProfanity.getDictionary('ru');
   leoProfanity.add(censorshipDictionaryRu);
   const rollbarConfig = {
@@ -28,7 +28,7 @@ const init = () => {
       <ErrorBoundary>
         <Provider store={store}>
           <I18nextProvider i18n={i18n}>
-            <SocketContext.Provider value={api}>
+            <SocketContext.Provider value={sockets}>
               <App />
             </SocketContext.Provider>
           </I18nextProvider>

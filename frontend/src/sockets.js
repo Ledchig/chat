@@ -1,9 +1,9 @@
 import io from 'socket.io-client';
-import { addMessage } from '../slices/messagesSlice';
-import store from '../slices/index';
+import { addMessage } from './slices/messagesSlice';
+import store from './slices/index';
 import {
   addChannel, removeChannel, renameChannel, setCurrentChannel,
-} from '../slices/channelsSlice';
+} from './slices/channelsSlice';
 
 const socket = io();
 

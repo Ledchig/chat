@@ -6,7 +6,7 @@ import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
-import { useAuthContext, useSocketContext } from '../context/index';
+import { useAuthContext, useSocketContext } from '../hooks/index';
 
 function InputNewMessage() {
   const { t } = useTranslation();

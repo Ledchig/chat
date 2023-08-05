@@ -6,7 +6,7 @@ import { Container, Row } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
 import { loadChannels } from '../slices/channelsSlice';
-import { useAuthContext } from '../context/index';
+import { useAuthContext } from '../hooks/index';
 import Channels from './Channels';
 import Messages from './Messages';
 import ModalComponent from './Modals';
