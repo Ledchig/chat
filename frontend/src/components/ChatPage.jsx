@@ -10,6 +10,7 @@ import { useAuthContext } from '../hooks/index';
 import Channels from './Channels';
 import Messages from './Messages';
 import ModalComponent from './Modals';
+import routes from '../routes';
 
 const Chat = () => {
   const { t } = useTranslation();
@@ -21,7 +22,7 @@ const Chat = () => {
     () => {
       const fetchChat = async (token) => {
         try {
-          const { data } = await axios.get('/api/v1/data', {
+          const { data } = await axios.get(routes.dataPath, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

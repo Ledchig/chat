@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { useAuthContext } from '../hooks/index';
 import imagePath from '../assets/login.jpeg';
+import routes from '../routes';
 
 const Login = () => {
   const { t } = useTranslation();
@@ -27,7 +28,7 @@ const Login = () => {
     onSubmit: async (values) => {
       setAuthFail(false);
       try {
-        const { data } = await axios.post('/api/v1/login', values);
+        const { data } = await axios.post(routes.loginPath);
         logIn(data);
         navigate('/', { replace: true });
       } catch (error) {

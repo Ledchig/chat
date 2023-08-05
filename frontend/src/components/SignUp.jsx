@@ -10,6 +10,7 @@ import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
 import { useAuthContext } from '../hooks/index';
 import signUpImg from '../assets/signUp.jpg';
+import routes from '../routes';
 
 const SignUp = () => {
   const { t } = useTranslation();
@@ -43,7 +44,7 @@ const SignUp = () => {
     }),
     onSubmit: async ({ username, password }) => {
       try {
-        const { data } = await axios.post('/api/v1/signup', {
+        const { data } = await axios.post(routes.signupPath, {
           username,
           password,
         });

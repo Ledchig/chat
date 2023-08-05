@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import { AuthContext } from "./index";
+import React, { useState } from 'react';
+import { AuthContext } from './index';
 
 const AuthProvider = ({ children }) => {
-  const userData = JSON.parse(localStorage.getItem("user"));
+  const userData = JSON.parse(localStorage.getItem('user'));
   const [user, setUser] = useState(userData ? userData.username : null);
 
   const logIn = (data) => {
-    localStorage.setItem("user", JSON.stringify(data));
+    localStorage.setItem('user', JSON.stringify(data));
     setUser(data.username);
   };
 
