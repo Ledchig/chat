@@ -37,6 +37,6 @@ const Messages = () => {
 
     </Col>
   );
-}
+};
 
 export default Messages;

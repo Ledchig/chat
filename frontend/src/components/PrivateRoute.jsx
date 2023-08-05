@@ -9,6 +9,6 @@ const PrivateRoute = () => {
   return (
     user ? (<Chat />) : (<Login />)
   );
-}
+};
 
 export default PrivateRoute;

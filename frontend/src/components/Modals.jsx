@@ -89,7 +89,7 @@ const NewChannelModal = () => {
       </Modal.Footer>
     </Modal>
   );
-}
+};
 
 const RemoveChannelModal = () => {
   const { t } = useTranslation();
@@ -134,7 +134,7 @@ const RemoveChannelModal = () => {
       </Modal.Footer>
     </Modal>
   );
-}
+};
 
 const RenameChannelModal = () => {
   const { renameChannel } = useSocketContext();
@@ -220,7 +220,7 @@ const RenameChannelModal = () => {
       </Modal.Footer>
     </Modal>
   );
-}
+};
 
 const map = {
   addChannel: NewChannelModal,
@@ -232,6 +232,6 @@ const ModalComponent = () => {
   const type = useSelector((state) => state.modal.type);
   const Component = map[type];
   return (Component === undefined ? null : <Component />);
-}
+};
 
 export default ModalComponent;

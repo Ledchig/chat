@@ -1,14 +1,12 @@
-/* eslint-disable react/jsx-no-constructed-context-values */
-/* eslint-disable react/prop-types */
-import React, { useState } from 'react';
-import { AuthContext } from './index';
+import React, { useState } from "react";
+import { AuthContext } from "./index";
 
 const AuthProvider = ({ children }) => {
-  const userData = JSON.parse(localStorage.getItem('user'));
+  const userData = JSON.parse(localStorage.getItem("user"));
   const [user, setUser] = useState(userData ? userData.username : null);
 
   const logIn = (data) => {
-    localStorage.setItem('user', JSON.stringify(data));
+    localStorage.setItem("user", JSON.stringify(data));
     setUser(data.username);
   };
 
@@ -23,7 +21,11 @@ const AuthProvider = ({ children }) => {
     logOut,
   };
 
-  return (<AuthContext.Provider value={auth}>{children}</AuthContext.Provider>);
-}
+  return (
+    <AuthContext.Provider value={auth}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
 
 export default AuthProvider;

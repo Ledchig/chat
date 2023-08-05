@@ -107,6 +107,6 @@ const Login = () => {
       </Row>
     </Container>
   );
-}
+};
 
 export default Login;

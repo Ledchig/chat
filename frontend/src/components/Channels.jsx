@@ -93,6 +93,6 @@ const Channels = () => {
       </ul>
     </Col>
   );
-}
+};
 
 export default Channels;

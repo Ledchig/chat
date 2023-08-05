@@ -65,6 +65,6 @@ const InputNewMessage = () => {
       </InputGroup>
     </Form>
   );
-}
+};
 
 export default InputNewMessage;
