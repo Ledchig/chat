@@ -28,7 +28,7 @@ const Login = () => {
     onSubmit: async (values) => {
       setAuthFail(false);
       try {
-        const { data } = await axios.post(routes.loginPath);
+        const { data } = await axios.post(routes.loginPath(), values);
         logIn(data);
         navigate('/', { replace: true });
       } catch (error) {

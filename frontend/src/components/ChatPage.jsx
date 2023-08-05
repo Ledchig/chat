@@ -22,7 +22,7 @@ const Chat = () => {
     () => {
       const fetchChat = async (token) => {
         try {
-          const { data } = await axios.get(routes.dataPath, {
+          const { data } = await axios.get(routes.dataPath(), {
             headers: {
               Authorization: `Bearer ${token}`,
             },

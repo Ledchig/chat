@@ -16,9 +16,9 @@ const App = () => (
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path={routes.chatPagePath} element={<PrivateRoute />} />
-          <Route path={routes.loginPagePath} element={<Login />} />
-          <Route path={routes.signupPagePath} element={<SignUp />} />
+          <Route path={routes.chatPagePath()} element={<PrivateRoute />} />
+          <Route path={routes.loginPagePath()} element={<Login />} />
+          <Route path={routes.signupPagePath()} element={<SignUp />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
