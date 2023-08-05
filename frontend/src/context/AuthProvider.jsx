@@ -1,26 +1,30 @@
-import { useState } from 'react';
-import { AuthContext } from './index.js';
+/* eslint-disable react/prop-types */
+import React, { useMemo, useState } from 'react';
+import { AuthContext } from './index';
 
-const AuthProvider = ({ children }) => {
-    const userData = JSON.parse(localStorage.getItem('user'));
-    const [user, setUser] = useState(userData ? userData.username : null); 
+function AuthProvider({ children }) {
+  const userData = JSON.parse(localStorage.getItem('user'));
+  const [user, setUser] = useState(userData ? userData.username : null);
 
-    const logIn = (userData) => {
-        const username = userData.username;
-        localStorage.setItem('user', JSON.stringify(userData));
-        setUser({ username });
-      };
+  const logIn = ({ username }) => {
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUser({ username });
+  };
 
-    const logOut = () => {
-        localStorage.clear();
-        setUser(null);
-    };
+  const logOut = () => {
+    localStorage.clear();
+    setUser(null);
+  };
 
-    return (
-        <AuthContext.Provider value={{ logOut, logIn, user }}>
-            {children}
-        </AuthContext.Provider>
-    );
-};
+  const auth = useMemo(() => ({
+    logOut, logIn, user,
+  }), []);
+
+  return (
+    <AuthContext.Provider value={auth}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
 
 export default AuthProvider;

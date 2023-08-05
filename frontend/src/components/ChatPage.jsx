@@ -1,64 +1,64 @@
-import axios from "axios";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { loadChannels } from '../slices/channelsSlice.js';
-import { useAuthContext } from '../context/index.js';
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
-import Channels from './Channels.jsx';
-import Messages from './Messages.jsx';
-import ModalComponent from "./Modals.jsx";
-import { toast } from "react-toastify";
-import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
+import { Container, Row } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
+import { loadChannels } from '../slices/channelsSlice';
+import { useAuthContext } from '../context/index';
+import Channels from './Channels';
+import Messages from './Messages';
+import ModalComponent from './Modals';
 
-const Chat = () => {
-    const { t } = useTranslation();
-    const auth = useAuthContext();
-    const navigate = useNavigate();
-    const dispatch = useDispatch();
-    const [fetched, setFetched] = useState(false);
-    useEffect(() => {
-        const fetchChat = async (token) => {
+function Chat() {
+  const { t } = useTranslation();
+  const auth = useAuthContext();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [fetched, setFetched] = useState(false);
+  useEffect(
+    () => {
+      const fetchChat = async (token) => {
         try {
-            
-            const { data } = await axios.get('/api/v1/data', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            dispatch(loadChannels(data));
-            setFetched(true);
-        } catch(error) {
-            console.log(error);
-            if (!error.isAxiosError) {
-                toast.error(t('errors.unknown'));
-                return;
-            }
-            if (error.response.status === 401) {
-                navigate('/login');
-            } else {
-                toast.error(t('errors.network'));
-            }
+          const { data } = await axios.get('/api/v1/data', {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          dispatch(loadChannels(data));
+          setFetched(true);
+        } catch (error) {
+          if (!error.isAxiosError) {
+            toast.error(t('errors.unknown'));
+            return;
+          }
+          if (error.response.status === 401) {
+            navigate('/login');
+          } else {
+            toast.error(t('errors.network'));
+          }
         }
-    };
-    const { token } = JSON.parse(localStorage.getItem('user'));
-    fetchChat(token);
+      };
+      const { token } = JSON.parse(localStorage.getItem('user'));
+      fetchChat(token);
     },
     [auth, dispatch, navigate, t],
-    );
-    
+  );
 
-    return (
-        fetched ? 
+  return (
+    fetched
+      ? (
         <Container className="h-100 my-4 overflow-hidden rounded shadow">
-            <ModalComponent />
-            <Row className="h-100 bg-white flex-md-row">
-                <Channels />
-                <Messages />
-            </Row>
+          <ModalComponent />
+          <Row className="h-100 bg-white flex-md-row">
+            <Channels />
+            <Messages />
+          </Row>
         </Container>
-        : null
-    );
-};
+      )
+      : null
+  );
+}
 
 export default Chat;

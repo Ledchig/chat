@@ -1,13 +1,14 @@
-import Chat from './ChatPage.jsx';
-import { useAuthContext } from '../context/index.js';
-import Login from './Login.jsx';
+import React from 'react';
+import Chat from './ChatPage';
+import { useAuthContext } from '../context/index';
+import Login from './Login';
 
-const PrivateRoute = () => {
+function PrivateRoute() {
   const { user } = useAuthContext();
 
   return (
     user ? (<Chat />) : (<Login />)
   );
-};
+}
 
 export default PrivateRoute;
