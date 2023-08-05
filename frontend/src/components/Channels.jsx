@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 import { setCurrentChannel } from '../slices/channelsSlice';
 import { openModal } from '../slices/modalSliice';
 
-function Channels() {
+const Channels = () => {
   const { t } = useTranslation();
   const { channels, currentChannelId } = useSelector(
     (state) => state.channelsInfo,

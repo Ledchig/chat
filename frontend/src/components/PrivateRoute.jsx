@@ -3,7 +3,7 @@ import Chat from './ChatPage';
 import { useAuthContext } from '../hooks/index';
 import Login from './Login';
 
-function PrivateRoute() {
+const PrivateRoute = () => {
   const { user } = useAuthContext();
 
   return (

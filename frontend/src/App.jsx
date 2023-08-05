@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './components/Login';
 import AuthProvider from './context/AuthProvider';
 
-function App() {
+const App = () => {
   return (
     <AuthProvider>
       <div className="d-flex flex-column h-100">

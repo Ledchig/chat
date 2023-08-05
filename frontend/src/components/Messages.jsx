@@ -4,7 +4,7 @@ import { Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import InputNewMessage from './InputNewMessage';
 
-function Messages() {
+const Messages = () => {
   const { t } = useTranslation();
   const { channels, currentChannelId } = useSelector((state) => state.channelsInfo);
   const { messages } = useSelector((state) => state.messagesInfo);

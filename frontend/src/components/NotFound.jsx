@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import imagePath from '../assets/notFound.svg';
 
-function NotFound() {
+const NotFound = () => {
   const { t } = useTranslation();
   return (
     <div className="text-center">

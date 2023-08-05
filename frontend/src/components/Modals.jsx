@@ -11,7 +11,7 @@ import leoProfanity from 'leo-profanity';
 import { useSocketContext } from '../hooks/index';
 import { closeModal } from '../slices/modalSliice';
 
-function NewChannelModal() {
+const NewChannelModal = () => {
   const { t } = useTranslation();
   const { addChannel } = useSocketContext();
   const { isOpened } = useSelector((state) => state.modal);
@@ -91,7 +91,7 @@ function NewChannelModal() {
   );
 }
 
-function RemoveChannelModal() {
+const RemoveChannelModal = () => {
   const { t } = useTranslation();
   const { removeChannel } = useSocketContext();
   const { isOpened } = useSelector((state) => state.modal);
@@ -136,7 +136,7 @@ function RemoveChannelModal() {
   );
 }
 
-function RenameChannelModal() {
+const RenameChannelModal = () => {
   const { renameChannel } = useSocketContext();
   const { isOpened } = useSelector((state) => state.modal);
   const { channels } = useSelector((state) => state.channelsInfo);
@@ -228,7 +228,7 @@ const map = {
   renameChannel: RenameChannelModal,
 };
 
-function ModalComponent() {
+const ModalComponent = () => {
   const type = useSelector((state) => state.modal.type);
   const Component = map[type];
   return (Component === undefined ? null : <Component />);

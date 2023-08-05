@@ -11,7 +11,7 @@ import Channels from './Channels';
 import Messages from './Messages';
 import ModalComponent from './Modals';
 
-function Chat() {
+const Chat = () => {
   const { t } = useTranslation();
   const auth = useAuthContext();
   const navigate = useNavigate();

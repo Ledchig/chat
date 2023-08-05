@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuthContext } from '../hooks/index';
 
-function Header() {
+const Header = () => {
   const { t } = useTranslation();
   const { logOut, user } = useAuthContext();
   const navigate = useNavigate();

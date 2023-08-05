@@ -8,7 +8,7 @@ import { toast } from 'react-toastify';
 import leoProfanity from 'leo-profanity';
 import { useAuthContext, useSocketContext } from '../hooks/index';
 
-function InputNewMessage() {
+const InputNewMessage = () => {
   const { t } = useTranslation();
   const { sendMessage } = useSocketContext();
   const channelId = useSelector((state) => state.channelsInfo.currentChannelId);

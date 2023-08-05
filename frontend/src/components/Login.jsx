@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import { useAuthContext } from '../hooks/index';
 import imagePath from '../assets/login.jpeg';
 
-function Login() {
+const Login = () => {
   const { t } = useTranslation();
   const [authFail, setAuthFail] = useState(false);
   const navigate = useNavigate();

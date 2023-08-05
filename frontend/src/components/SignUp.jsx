@@ -11,7 +11,7 @@ import leoProfanity from 'leo-profanity';
 import { useAuthContext } from '../hooks/index';
 import signUpImg from '../assets/signUp.jpg';
 
-function SignUp() {
+const SignUp = () => {
   const { t } = useTranslation();
   const { logIn } = useAuthContext();
   const navigate = useNavigate();

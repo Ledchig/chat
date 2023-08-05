@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { AuthContext } from './index';
 
-function AuthProvider({ children }) {
+const AuthProvider = ({ children }) => {
   const userData = JSON.parse(localStorage.getItem('user'));
   const [user, setUser] = useState(userData ? userData.username : null);
 
