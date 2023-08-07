@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { AuthContext } from './index';
 
 const AuthProvider = ({ children }) => {
@@ -15,11 +15,7 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
-  const auth = {
-    user,
-    logIn,
-    logOut,
-  };
+  const auth = useMemo(() => ({ user, logIn, logOut }), [user, logIn, logOut]);
 
   return (
     <AuthContext.Provider value={auth}>
