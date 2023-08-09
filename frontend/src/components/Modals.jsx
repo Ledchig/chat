@@ -142,8 +142,9 @@ const RenameChannelModal = () => {
   const { renameChannel } = useSocketContext();
   const { isOpened } = useSelector((state) => state.modal);
   const { channels } = useSelector((state) => state.channelsInfo);
-  const id = useSelector((state) => state.modal.extra);
+  const channelId = useSelector((state) => state.modal.extra);
   const channelsNames = channels.map((channel) => channel.name);
+  const channel = channels.find(({ id }) => id === channelId);
   const dispatch = useDispatch();
   const inputRef = useRef();
   const { t } = useTranslation();
@@ -154,7 +155,7 @@ const RenameChannelModal = () => {
 
   const formik = useFormik({
     initialValues: {
-      name: '',
+      name: channel.name,
     },
     validationSchema: Yup.object({
       name: Yup
@@ -167,9 +168,9 @@ const RenameChannelModal = () => {
     }),
     onSubmit: async ({ name }) => {
       const cleanedName = leoProfanity.clean(name);
-      const channel = { name: cleanedName, id };
+      const data = { name: cleanedName, id: channelId };
       try {
-        await renameChannel(channel);
+        await renameChannel(data);
         formik.resetForm();
         toast.success(t('channels.renamed'));
         handleClose();
@@ -184,7 +185,7 @@ const RenameChannelModal = () => {
   });
 
   useEffect(() => {
-    setTimeout(() => inputRef.current.focus());
+    setTimeout(() => inputRef.current.select());
   }, []);
 
   return (
