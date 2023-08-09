@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
+import { animateScroll } from 'react-scroll';
 import InputNewMessage from './InputNewMessage';
 
 const Messages = () => {
@@ -11,7 +12,10 @@ const Messages = () => {
   const messagesForCurrentChannel = messages
     .filter(({ channelId }) => channelId === currentChannelId);
   const currentChannel = channels.find(({ id }) => id === currentChannelId);
-  console.log(currentChannel);
+
+  useEffect(() => {
+    animateScroll.scrollToBottom({ containerId: 'messages-box' });
+  }, [messagesForCurrentChannel]);
 
   return (
     <Col className="p-0 h-100">
