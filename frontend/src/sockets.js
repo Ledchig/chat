@@ -2,7 +2,7 @@ import io from 'socket.io-client';
 import { addMessage } from './slices/messagesSlice';
 import store from './slices/index';
 import {
-  addChannel, removeChannel, renameChannel, setCurrentChannel,
+  addChannel, removeChannel, renameChannel,
 } from './slices/channelsSlice';
 
 const socket = io();
@@ -13,7 +13,6 @@ socket.on('newMessage', (payload) => {
 
 socket.on('newChannel', (payload) => {
   store.dispatch(addChannel(payload));
-  store.dispatch(setCurrentChannel(payload));
 });
 
 socket.on('removeChannel', (payload) => {
