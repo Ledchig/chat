@@ -30,9 +30,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         
-      - name: Install DevDependencies
+      - name: Install dependencies
         run: make install
 
       - name: Run ESLint
         run: make lint
-        continue-on-error: true
