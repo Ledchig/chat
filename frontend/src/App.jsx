@@ -25,6 +25,6 @@ const App = () => (
     </div>
     <ToastContainer />
   </AuthProvider>
-);
+)
 
 export default App;
