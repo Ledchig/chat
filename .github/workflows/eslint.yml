@@ -31,8 +31,7 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Install DevDependencies
-        run:
-          npm install --production --prefix frontend
+        run: make install
 
       - name: Run ESLint
         run: make lint
