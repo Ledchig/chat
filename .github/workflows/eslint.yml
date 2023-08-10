@@ -30,9 +30,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
         
-      - name: Install ESLint
+      - name: Install DevDependencies
         run:
-          npm install eslint@8.46.0
+          npm install --production
 
       - name: Run ESLint
         run: make lint
