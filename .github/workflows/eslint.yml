@@ -29,6 +29,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+        
+      - name: Install ESLint
+        run:
+          npm install eslint@8.46.0
 
       - name: Run ESLint
         run: make lint
