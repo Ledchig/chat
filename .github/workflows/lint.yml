@@ -1,0 +1,16 @@
+name: eslint
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [18.x]
+    steps:
+      - name: eslint check
+      - run: make install
+      - run: make lint

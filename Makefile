@@ -10,8 +10,8 @@ start-frontend:
 start-backend:
 	npx start-server
 
-deploy:
-	git push heroku main
+lint:
+	npm run lint --prefix frontend
 
 start:
 	make start-backend & make start-frontend
