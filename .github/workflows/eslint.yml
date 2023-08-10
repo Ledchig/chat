@@ -32,7 +32,7 @@ jobs:
         
       - name: Install DevDependencies
         run:
-          npm install --production
+          npm install --production --prefix frontend
 
       - name: Run ESLint
         run: make lint
