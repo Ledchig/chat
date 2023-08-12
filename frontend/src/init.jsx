@@ -45,43 +45,21 @@ const init = () => {
     store.dispatch(renameChannel(payload));
   });
 
+  const socketPromise = (type, data) => new Promise((resolve, reject) => {
+    socket.emit(type, data, (response) => {
+      if (response.status === 'ok') {
+        resolve(response.data);
+      } else {
+        reject();
+      }
+    });
+  });
+
   const sockets = {
-    sendMessage: (message) => new Promise((resolve, reject) => {
-      socket.emit('newMessage', message, (response) => {
-        if (response.status === 'ok') {
-          resolve(response.data);
-        } else {
-          reject();
-        }
-      });
-    }),
-    addChannel: (channel) => new Promise((resolve, reject) => {
-      socket.emit('newChannel', channel, (response) => {
-        if (response.status === 'ok') {
-          resolve(response.data);
-        } else {
-          reject();
-        }
-      });
-    }),
-    removeChannel: (id) => new Promise((resolve, reject) => {
-      socket.emit('removeChannel', id, (response) => {
-        if (response.status === 'ok') {
-          resolve(response.data);
-        } else {
-          reject();
-        }
-      });
-    }),
-    renameChannel: (channel) => new Promise((resolve, reject) => {
-      socket.emit('renameChannel', channel, (response) => {
-        if (response.status === 'ok') {
-          resolve(response.data);
-        } else {
-          reject();
-        }
-      });
-    }),
+    sendMessage: (message) => socketPromise('newMessage', message),
+    addChannel: (channel) => socketPromise('newChannel', channel),
+    removeChannel: (id) => socketPromise('removeChannel', id),
+    renameChannel: (channel) => socketPromise('renameChannel', channel),
   };
 
   return (
