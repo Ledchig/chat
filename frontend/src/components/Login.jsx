@@ -30,7 +30,7 @@ const Login = () => {
       try {
         const { data } = await axios.post(routes.loginPath(), values);
         logIn(data);
-        navigate('/', { replace: true });
+        navigate(routes.chatPagePath(), { replace: true });
       } catch (error) {
         formik.setSubmitting(false);
         if (!error.isAxiosError) {
@@ -97,7 +97,7 @@ const Login = () => {
             <Card.Footer className="p-4">
               <div className="text-center">
                 <span>{t('login.newToChat')}</span>
-                <Link to="/signup">
+                <Link to={routes.signupPagePath()}>
                   {' '}
                   {t('login.signup')}
                 </Link>

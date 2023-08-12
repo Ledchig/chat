@@ -48,11 +48,11 @@ const InputNewMessage = () => {
         <Form.Control
           className="border-0 p-0 ps-2"
           name="body"
-          aria-label="Новое сообщение"
+          aria-label={t('chat.newMessage')}
           onChange={formik.handleChange}
           value={formik.values.body}
           disabled={formik.isSubmitting}
-          placeholder="Введите сообщение..."
+          placeholder={t('chat.placeholder')}
           ref={inputMessageRef}
         />
         <Button

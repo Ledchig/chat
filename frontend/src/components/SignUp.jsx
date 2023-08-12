@@ -49,7 +49,7 @@ const SignUp = () => {
           password,
         });
         logIn(data);
-        navigate('/', { replace: true });
+        navigate(routes.chatPagePath(), { replace: true });
       } catch (error) {
         if (!error.isAxiosError) {
           toast.error(t('errors.unknown'));

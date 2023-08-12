@@ -40,6 +40,7 @@ const en = {
       send: 'Send',
       messageCount: 'message',
       messageCount_plural: 'messages',
+      placeholder: 'Type your message...',
     },
     signup: {
       required: 'Required',

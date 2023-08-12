@@ -35,7 +35,7 @@ const Chat = () => {
             return;
           }
           if (error.response.status === 401) {
-            navigate('/login');
+            navigate(routes.loginPagePath());
           } else {
             toast.error(t('errors.network'));
           }
