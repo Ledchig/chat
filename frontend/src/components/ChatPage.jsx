@@ -41,8 +41,7 @@ const Chat = () => {
           }
         }
       };
-      const { token } = JSON.parse(localStorage.getItem('user'));
-      fetchChat(token);
+      fetchChat(auth.user.token);
     },
     [auth, dispatch, navigate, t],
   );
