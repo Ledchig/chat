@@ -8,7 +8,7 @@ const NotFound = () => {
   const { t } = useTranslation();
   return (
     <div className="text-center">
-      <img className="img-fluid h-25" alt="Страница не найдена" src={imagePath} />
+      <img className="img-fluid h-25" alt={t('notFound.header')} src={imagePath} />
       <h1 className="h4 text-muted">{t('notFound.header')}</h1>
       <p className="text-muted">
         {t('notFound.message')}

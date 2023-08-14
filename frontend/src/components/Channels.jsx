@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   Button, ButtonGroup, Col, Dropdown,
 } from 'react-bootstrap';
 import DropdownToggle from 'react-bootstrap/esm/DropdownToggle';
-import { animateScroll } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
 import { setCurrentChannel } from '../slices/channelsSlice';
 import { openModal } from '../slices/modalSliice';
@@ -15,6 +14,7 @@ const Channels = () => {
     (state) => state.channelsInfo,
   );
   const dispatch = useDispatch();
+  const bottom = useRef();
 
   const handleChangeChannel = (id) => () => {
     dispatch(setCurrentChannel({ id }));
@@ -31,12 +31,6 @@ const Channels = () => {
   const handleRenameChannel = (id) => () => {
     dispatch(openModal({ type: 'renameChannel', id }));
   };
-
-  useEffect(() => {
-    if (currentChannelId === channels.at(-1).id) {
-      animateScroll.scrollToBottom({ containerId: 'channels-list' });
-    }
-  }, [channels]);
 
   return (
     <Col className="col-4 col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
@@ -97,6 +91,7 @@ const Channels = () => {
             </Button>
           </li>
         )))}
+        <li ref={bottom} />
       </ul>
     </Col>
   );
